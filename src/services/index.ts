@@ -1,1 +1,2 @@
-export * from './getJellyBeans'; 
+export * from './getJellyBeans';
+export * from './getJellyBeanById';
