@@ -1,8 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 type JellyBeanCardProps = {
+  beanId: number;
   flavorName: string;
   description: string;
   imageUrl: string;
@@ -12,7 +14,8 @@ type JellyBeanCardProps = {
 }
 
 export default function JellyBeanCard(props: JellyBeanCardProps) {
-  const { flavorName, description, imageUrl, backgroundColor, isReverse, isLgReverse } = props;
+  const { beanId, flavorName, description, imageUrl, backgroundColor, isReverse, isLgReverse } = props;
+  const router = useRouter();
 
   const reverseClass = () => {
     const classes = [
@@ -23,9 +26,16 @@ export default function JellyBeanCard(props: JellyBeanCardProps) {
     return classes.join(' ');
   }
 
+  const handleClick = () => {
+    router.push(`/bean/${beanId}`);
+  };
+
   return (
     <div>
-      <div className={`flex flex-row h-64 lg:h-80 bg-white ${reverseClass()}`}>
+      <div 
+        className={`flex flex-row h-64 lg:h-80 bg-white ${reverseClass()} cursor-pointer`}
+        onClick={handleClick}
+      >
         <div className={`flex justify-center w-1/2`} style={{ background: backgroundColor }}>
           {imageUrl && (
               <Image
