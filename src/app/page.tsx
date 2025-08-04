@@ -4,8 +4,6 @@ import { JellyBeanList } from '@/features/jelly-beans';
 import { Header, Footer } from '@/components/layout';
 
 export default function Home() {
-
-
   return (
     <div className="min-h-screen bg-purple-50">
       <Header />
