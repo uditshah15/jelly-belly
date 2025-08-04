@@ -35,7 +35,7 @@ export default function JellyBeanList() {
         setJellyBeans(response.items);
         setTotalPages(response.pagination.totalPages);
       } catch (error) {
-        setError('Unable to fetch jelly beans. Please try again later.');
+        setError('Unable to fetch data. Please try again later.');
         console.error(error);
       }
       
