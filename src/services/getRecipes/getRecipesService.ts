@@ -1,12 +1,12 @@
 import { transformGetRecipesResponse, TransformedRecipes } from './getRecipesTransformation';
 import { validateGetRecipesResponse } from './getRecipesValidation';
 
-const RECIPES_API_BASE = 'https://jellybellywikiapi.onrender.com/api/Recipes';
+const API_URL = 'https://jellybellywikiapi.onrender.com/api/Recipes';
 
 export async function getRecipes(): Promise<TransformedRecipes> {
   try {
     const randomPageIndex = Math.floor(Math.random() * 12);
-    const response = await fetch(`${RECIPES_API_BASE}?pageSize=2&pageIndex=${randomPageIndex}`);
+    const response = await fetch(`${API_URL}?pageSize=2&pageIndex=${randomPageIndex}`);
     
     if (!response.ok) {
       throw new Error("Failed to fetch data.");

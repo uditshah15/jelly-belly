@@ -2,13 +2,13 @@ import { getRecipes, TransformedRecipes } from '@/services';
 import { TransformedJellyBeanDetails, transformGetJellyBeanByIdResponse } from './getJellyBeanByIdTransformation';
 import { validateGetJellyBeanByIdResponse, validateGetJellyBeanByIdParams } from './getJellyBeanByIdValidation';
 
-const JELLY_BELLY_API_BASE = 'https://jellybellywikiapi.onrender.com/api/Beans';
+const API_URL = 'https://jellybellywikiapi.onrender.com/api/Beans';
 
 async function getJellyBeanById(beanId: number): Promise<TransformedJellyBeanDetails> {
   try {
     validateGetJellyBeanByIdParams.parse({ beanId });
 
-    const response = await fetch(`${JELLY_BELLY_API_BASE}/${beanId}`);
+    const response = await fetch(`${API_URL}/${beanId}`);
     
     if (!response.ok) {
       throw new Error("Failed to fetch jelly bean data.");
