@@ -14,6 +14,7 @@ export async function getJellyBeans(page: number = 1, pageSize: number = 24): Pr
     }
 
     const data = await response.json();
+
     validateGetJellyBeansResponse.parse(data);
 
     return transformGetJellyBeansResponse(data);
