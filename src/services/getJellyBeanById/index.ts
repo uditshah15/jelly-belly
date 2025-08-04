@@ -1,2 +1,2 @@
 export type { TransformedJellyBeanDetails } from './getJellyBeanByIdTransformation';
-export { getJellyBeanById } from './getJellyBeanByIdService';
+export { getJellyBeanDetails } from './getJellyBeanByIdService';
