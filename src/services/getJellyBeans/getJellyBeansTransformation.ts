@@ -1,6 +1,7 @@
 import { GetJellyBeansResponse } from './getJellyBeansValidation';
 
 export type TransformedJellyBean = {
+  beanId: number;
   flavorName: string;
   description: string;
   imageUrl: string;
@@ -9,7 +10,6 @@ export type TransformedJellyBean = {
 };
 
 type Pagination = {
-  totalCount: number;
   pageSize: number;
   currentPage: number;
   totalPages: number;
@@ -20,9 +20,10 @@ export type TransformedGetJellyBeansResponse = {
   pagination: Pagination;
 };
 
-export function transformGetJellyBeansResponse(apiResponse: GetJellyBeansResponse): TransformedGetJellyBeansResponse {
+export function transformGetJellyBeansResponse(response: GetJellyBeansResponse): TransformedGetJellyBeansResponse {
   return {
-    items: apiResponse.items.map((item) => ({
+    items: response.items.map((item) => ({
+      beanId: item.beanId,
       flavorName: item.flavorName,
       description: item.description,
       imageUrl: item.imageUrl,
@@ -30,10 +31,9 @@ export function transformGetJellyBeansResponse(apiResponse: GetJellyBeansRespons
       groupName: item.groupName,
     })),
     pagination: {
-      totalCount: apiResponse.totalCount,
-      pageSize: apiResponse.pageSize,
-      currentPage: apiResponse.currentPage,
-      totalPages: apiResponse.totalPages,
+      pageSize: response.pageSize,
+      currentPage: response.currentPage,
+      totalPages: response.totalPages,
     },
   };
 }

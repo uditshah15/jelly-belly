@@ -3,7 +3,7 @@ import { validateGetJellyBeansResponse, validateGetJellyBeansParams } from './ge
 
 const JELLY_BELLY_API_BASE = 'https://jellybellywikiapi.onrender.com/api/Beans';
 
-export async function getJellyBeans(page: number = 1, groupName: string = ''): Promise<TransformedGetJellyBeansResponse> {
+export async function getJellyBeans(page: number, groupName: string): Promise<TransformedGetJellyBeansResponse> {
   try {
     validateGetJellyBeansParams.parse({ page, groupName })
 

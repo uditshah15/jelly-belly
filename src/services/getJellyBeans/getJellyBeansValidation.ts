@@ -1,12 +1,12 @@
 import { z } from 'zod';
 
 export const validateGetJellyBeansResponse = z.object({
-  totalCount: z.number().positive(),
-  pageSize: z.number().positive(),
-  currentPage: z.number().positive(),
-  totalPages: z.number().positive(),
+  pageSize: z.number(),
+  currentPage: z.number(),
+  totalPages: z.number(),
   items: z.array(
     z.object({
+      beanId: z.number().positive(),
       flavorName: z.string(),
       description: z.string(),
       imageUrl: z.string(),
