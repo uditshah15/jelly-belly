@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import JellyBeanCard from './JellyBeanCard';
 import { LoadingSpinner, ErrorMessage, Pagination } from '@/components';
 import { getJellyBeans, TransformedJellyBean } from '@/services';
+import Filter from './Filter';
 
 export default function JellyBeanList() {
   const [jellyBeans, setJellyBeans] = useState<TransformedJellyBean[]>([]);
@@ -11,6 +12,7 @@ export default function JellyBeanList() {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const [selectedGroup, setSelectedGroup] = useState<string>('');
 
   useEffect(() => {
     (async () => {
@@ -18,7 +20,7 @@ export default function JellyBeanList() {
         setLoading(true);
         setError(null);
         
-        const response = await getJellyBeans(currentPage); 
+        const response = await getJellyBeans(currentPage, selectedGroup); 
         
         setJellyBeans(response.items);
         setTotalPages(response.pagination.totalPages);
@@ -29,13 +31,21 @@ export default function JellyBeanList() {
       
       setLoading(false);
     })();
-  }, [currentPage]);
+  }, [currentPage, selectedGroup]);
   
   if (loading) {
     return (
-      <div className="h-128">
-        <LoadingSpinner />
-      </div>
+      <>
+        <Filter 
+          selectedGroup={selectedGroup}
+          onGroupChange={setSelectedGroup}
+          isLoading={loading}
+        />
+  
+        <div className='pt-12 md:pt-24'>
+          <LoadingSpinner />
+        </div>
+      </>
     );
   }
 
@@ -52,8 +62,14 @@ export default function JellyBeanList() {
   };
 
   return (
-    <div className="w-full">
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2">
+    <div className='w-full'>
+        <Filter 
+          selectedGroup={selectedGroup}
+          onGroupChange={setSelectedGroup}
+          isLoading={loading}
+        />
+
+      <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2'>
         {jellyBeans.map((jellyBean, idx) => (
           <JellyBeanCard key={idx} {...jellyBean} isReverse={idx % 2 === 0} isLgReverse={reverse(idx)} />
         ))}

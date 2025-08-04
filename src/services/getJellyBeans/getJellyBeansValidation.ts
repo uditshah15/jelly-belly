@@ -18,7 +18,7 @@ export const validateGetJellyBeansResponse = z.object({
 
 export const validateGetJellyBeansParams = z.object({
   page: z.number().positive(),
-  pageSize: z.number().positive(),
+  groupName: z.string(),
 });
 
 export type GetJellyBeansResponse = z.infer<typeof validateGetJellyBeansResponse>;

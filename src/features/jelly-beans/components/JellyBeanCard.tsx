@@ -38,13 +38,13 @@ export default function JellyBeanCard(props: JellyBeanCardProps) {
           )}
         </div>
 
-        <div className="p-8 w-1/2">
-          <h3 className="mb-4 text-2xl font-semibold">
+        <div className="p-4 md:p-8 w-1/2">
+          <h3 className="mb-4 text-xl md:text-2xl font-semibold">
             {flavorName}
           </h3>
           
           {description && (
-            <p>
+            <p className='text-sm md:text-base'>
               {description}
             </p>
           )}

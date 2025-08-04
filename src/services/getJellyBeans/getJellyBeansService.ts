@@ -3,11 +3,11 @@ import { validateGetJellyBeansResponse, validateGetJellyBeansParams } from './ge
 
 const JELLY_BELLY_API_BASE = 'https://jellybellywikiapi.onrender.com/api/Beans';
 
-export async function getJellyBeans(page: number = 1, pageSize: number = 16): Promise<TransformedGetJellyBeansResponse> {
+export async function getJellyBeans(page: number = 1, groupName: string = ''): Promise<TransformedGetJellyBeansResponse> {
   try {
-    validateGetJellyBeansParams.parse({ page, pageSize })
+    validateGetJellyBeansParams.parse({ page, groupName })
 
-    const response = await fetch(`${JELLY_BELLY_API_BASE}/?pageIndex=${page}&pageSize=${pageSize}`);
+    const response = await fetch(`${JELLY_BELLY_API_BASE}/?pageIndex=${page}&groupName=${groupName}&pageSize=10`);
     
     if (!response.ok) {
       throw new Error("Failed to fetch data.");
