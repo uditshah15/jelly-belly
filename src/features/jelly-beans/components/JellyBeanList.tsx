@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from 'react';
 import JellyBeanCard from './JellyBeanCard';
-import { LoadingSpinner, ErrorMessage } from '@/components';
+import { LoadingSpinner, ErrorMessage, Pagination } from '@/components';
 import { getJellyBeans, TransformedJellyBean } from '@/services';
-
 
 export default function JellyBeanList() {
   const [jellyBeans, setJellyBeans] = useState<TransformedJellyBean[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   useEffect(() => {
     (async () => {
@@ -17,9 +18,10 @@ export default function JellyBeanList() {
         setLoading(true);
         setError(null);
         
-        const data = await getJellyBeans();
+        const response = await getJellyBeans(currentPage); 
         
-        setJellyBeans(data);
+        setJellyBeans(response.items);
+        setTotalPages(response.pagination.totalPages);
       } catch (error) {
         setError('Unable to fetch jelly beans. Please try again later.');
         console.error(error);
@@ -27,7 +29,7 @@ export default function JellyBeanList() {
       
       setLoading(false);
     })();
-  }, []);
+  }, [currentPage]);
   
   if (loading) {
     return (
@@ -43,17 +45,11 @@ export default function JellyBeanList() {
     );
   }
 
-  if (!jellyBeans || jellyBeans.length === 0) {
-    return (
-      <ErrorMessage message="No jelly beans found" />
-    );
-  }
-
   const reverse = (idx: number) => {
     const col = Math.floor(idx / 2) + 1;
 
     return col % 2 === 0;
-  }
+  };
 
   return (
     <div className="w-full">
@@ -62,6 +58,13 @@ export default function JellyBeanList() {
           <JellyBeanCard key={idx} {...jellyBean} isReverse={idx % 2 === 0} isLgReverse={reverse(idx)} />
         ))}
       </div>
+      
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={(page) => setCurrentPage(page)}
+        isLoading={loading}
+      />
     </div>
   );
 } 
