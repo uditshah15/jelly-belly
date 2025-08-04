@@ -11,12 +11,13 @@ const nextConfig: NextConfig = {
         as: '*.js',
       },
     },
-    // Example: Configuring module aliases
+
     resolveAlias: {
+      '@/features': './src/features',
       '@/components': './src/components',
-      '@/styles': './src/styles',
+      '@/services': './src/services',
     },
-    // Example: Overriding default file extensions to resolve
+
     resolveExtensions: [
       '.tsx',
       '.ts',

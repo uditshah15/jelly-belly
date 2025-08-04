@@ -1,7 +1,7 @@
 'use client';
 
-import { JellyBeanList } from '@/features/jelly-beans';
-import { Header, Footer } from '@/components/layout';
+import { Header, Footer } from '@/components';
+import { JellyBeanList } from '@/features';
 
 export default function Home() {
   return (

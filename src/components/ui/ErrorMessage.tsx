@@ -3,7 +3,7 @@ type ErrorProps = {
   message: string;
 }
 
-export default function Error({ 
+export default function ErrorMessage({ 
   title = "Something went wrong",
   message
 }: ErrorProps) {
