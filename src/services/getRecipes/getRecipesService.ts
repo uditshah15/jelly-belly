@@ -3,10 +3,9 @@ import { validateGetRecipesResponse } from './getRecipesValidation';
 
 const RECIPES_API_BASE = 'https://jellybellywikiapi.onrender.com/api/Recipes';
 
-const randomPageIndex = Math.floor(Math.random() * 12);
-
 export async function getRecipes(): Promise<TransformedRecipes> {
   try {
+    const randomPageIndex = Math.floor(Math.random() * 12);
     const response = await fetch(`${RECIPES_API_BASE}?pageSize=2&pageIndex=${randomPageIndex}`);
     
     if (!response.ok) {
