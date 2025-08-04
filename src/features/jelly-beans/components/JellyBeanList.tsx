@@ -14,6 +14,16 @@ export default function JellyBeanList() {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [selectedGroup, setSelectedGroup] = useState<string>('');
 
+  const handleGroupChange = (group: string) => {
+    setSelectedGroup(group);
+    setCurrentPage(1);
+  };
+
+  const reverse = (idx: number) => {
+    const col = Math.floor(idx / 2) + 1;
+    return col % 2 === 0;
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -38,7 +48,7 @@ export default function JellyBeanList() {
       <>
         <Filter 
           selectedGroup={selectedGroup}
-          onGroupChange={setSelectedGroup}
+          onGroupChange={handleGroupChange}
           isLoading={loading}
         />
   
@@ -55,17 +65,11 @@ export default function JellyBeanList() {
     );
   }
 
-  const reverse = (idx: number) => {
-    const col = Math.floor(idx / 2) + 1;
-
-    return col % 2 === 0;
-  };
-
   return (
     <div className='w-full'>
         <Filter 
           selectedGroup={selectedGroup}
-          onGroupChange={setSelectedGroup}
+          onGroupChange={handleGroupChange}
           isLoading={loading}
         />
 
