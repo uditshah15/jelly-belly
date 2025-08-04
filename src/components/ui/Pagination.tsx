@@ -6,14 +6,14 @@ type PaginationProps = {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  isLoading?: boolean;
+  isLoading: boolean;
 }
 
 export default function Pagination({ 
   currentPage, 
   totalPages, 
   onPageChange, 
-  isLoading = false 
+  isLoading 
 }: PaginationProps) {
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;

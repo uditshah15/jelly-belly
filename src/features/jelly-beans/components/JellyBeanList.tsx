@@ -30,10 +30,6 @@ export default function JellyBeanList() {
       setLoading(false);
     })();
   }, [currentPage]);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
   
   if (loading) {
     return (
@@ -66,7 +62,7 @@ export default function JellyBeanList() {
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onPageChange={handlePageChange}
+        onPageChange={(page) => setCurrentPage(page)}
         isLoading={loading}
       />
     </div>
