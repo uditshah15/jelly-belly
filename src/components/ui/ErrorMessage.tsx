@@ -1,0 +1,16 @@
+type ErrorMessageProps = {
+  title?: string;
+  message: string;
+}
+
+export default function ErrorMessage({ 
+  title = "Something went wrong",
+  message
+}: ErrorMessageProps) {
+  return (
+    <div className="text-center py-12">
+      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <p>{message}</p>
+    </div>
+  );
+} 

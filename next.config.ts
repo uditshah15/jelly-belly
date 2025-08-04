@@ -11,12 +11,13 @@ const nextConfig: NextConfig = {
         as: '*.js',
       },
     },
-    // Example: Configuring module aliases
+
     resolveAlias: {
+      '@/features': './src/features',
       '@/components': './src/components',
-      '@/styles': './src/styles',
+      '@/services': './src/services',
     },
-    // Example: Overriding default file extensions to resolve
+
     resolveExtensions: [
       '.tsx',
       '.ts',
@@ -28,6 +29,18 @@ const nextConfig: NextConfig = {
   },
   // Other Next.js configurations can go here as well
   reactStrictMode: true,
+  
+  // Configure images to allow external domains
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn-tp1.mozu.com',
+        port: '',
+        pathname: '/**',
+      }, 
+    ],
+  },
 };
 
 export default nextConfig;
