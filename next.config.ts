@@ -28,6 +28,18 @@ const nextConfig: NextConfig = {
   },
   // Other Next.js configurations can go here as well
   reactStrictMode: true,
+  
+  // Configure images to allow external domains
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn-tp1.mozu.com',
+        port: '',
+        pathname: '/**',
+      }, 
+    ],
+  },
 };
 
 export default nextConfig;
