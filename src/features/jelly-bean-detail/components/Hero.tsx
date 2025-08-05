@@ -11,7 +11,7 @@ export default function Hero({ imageUrl, flavorName }: HeroProps) {
                 alt={flavorName}
                 className="object-contain h-96"
             />
-            <h1 className="text-5xl lg:text-[8rem] font-bold mb-16">
+            <h1 className="text-5xl lg:text-[8rem] text-center lg:text-left font-bold mb-16">
                 {flavorName}
             </h1>      
         </section>
