@@ -87,7 +87,7 @@ export default function JellyBeanCard(props: JellyBeanCardProps) {
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}
       >
-        <div className={`flex justify-center w-1/2`} style={{ background: backgroundColor }}>
+        <div className={`flex justify-center items-center w-1/2`} style={{ background: backgroundColor }}>
           {imageUrl && (
             <Image
               src={imageUrl}
